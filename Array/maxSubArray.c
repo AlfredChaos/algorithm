@@ -7,16 +7,13 @@
 
 int maxSubArray(int* nums, int numsSize){
     int max = 0;
-    int index = 0;
-    while(index < numsSize) {
-        int sum = nums[index];
-        for (int i=index+1; i<numsSize; i++) {
-            sum += nums[i];
+    for (int i=1; i<numsSize; i++) {
+        if (nums[i] + nums[i-1] > nums[i]) {
+            nums[i] += nums[i-1];
         }
-        if (sum > max) {
-            max = sum;
+        if (nums[i] > max) {
+            max = nums[i];
         }
-        index++;
     }
     return max;
 }
